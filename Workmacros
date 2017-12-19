@@ -1,0 +1,17 @@
+Sub resizepics()
+Dim insertedPicture As InlineShape
+Dim insertedShape As Shape
+Dim imgMult As Single
+imgMult = 6.7
+
+For Each insertedPicture In ActiveDocument.InlineShapes
+insertedPicture.Select
+'insertedPictureHeight = insertedPictureHeight * imgMult / insertedPicture.Width
+insertedPicture.Width = InchesToPoints(6.7)
+Next
+'For Each insertedShape In ActiveDocument.Shapes
+'insertedShape.Select
+'insertedShape.Height = insertedShape.Height * imgMult / insertedShape.Width
+'insertedShape.Width = imgMult
+'Next
+End Sub
