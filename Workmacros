@@ -310,3 +310,54 @@ With xDoc
    .Characters.Last.Delete
 End With
 End Function
+
+
+
+
+Sub Autofit()
+'this will autofit all tables and optionally also apply selected style
+Application.ScreenUpdating = False
+Dim Tbl As Table
+Dim mycolor As WdColor
+
+mycolor = wdColorBlack
+
+For a = 1 To ActiveDocument.Tables.Count
+   ActiveDocument.Tables(a).Select
+  
+ '  MsgBox a
+   
+     ActiveDocument.Tables(a).AutoFitBehavior (wdAutoFitWindow)
+ 
+     ActiveDocument.Tables(a).Rows.HeightRule = wdRowHeightAuto
+  
+     ActiveDocument.Tables(a).TopPadding = 1
+     ActiveDocument.Tables(a).BottomPadding = 1
+     ActiveDocument.Tables(a).LeftPadding = 5
+     ActiveDocument.Tables(a).RightPadding = 3
+  '   ActiveDocument.Tables(a).RightPadding = InchesToPoints(0)
+      ActiveDocument.Tables(a).AllowAutoFit = True
+      
+    '  ActiveDocument.Tables(a).Style = "Table Grid1"
+    With ActiveDocument.Tables(a)
+    .Borders.InsideLineStyle = wdLineStyleSingle
+    .Borders.OutsideLineStyle = wdLineStyleSingle
+'    .Borders(wdBorderTop).Color = mycolor
+'    .Borders(wdBorderBottom).Color = mycolor
+'    .Borders(wdBorderHorizontal).Color = mycolor
+'    .Borders(wdBorderVertical).Color = mycolor
+'    .Borders(wdBorderLeft).Color = mycolor
+'    .Borders(wdBorderRight).Color = mycolor
+    End With
+ For Each aBorder In ActiveDocument.Tables(a).Borders
+    aBorder.Color = wdColorIndigo
+    Next
+Next
+Application.ScreenUpdating = True
+Application.ScreenRefresh
+MsgBox "Done", vbOKOnly
+End Sub
+
+
+
+
